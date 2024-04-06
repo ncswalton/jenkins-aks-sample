@@ -1,0 +1,27 @@
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# terraform lock
+.terraform.lock.hcl
+
+# Include tfplan files to ignore in version control (.tfplan files may contain
+# sensitive data)
+*.tfplan
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
+
+# Ignore any .tfvars files that are generated automatically for each Terraform run. Most
+# .tfvars files are managed as part of configuration and so should be included in
+# version control.
+*.tfvars
+
+# config files
+/config/*
+
+
