@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
     stages {
         stage('Build Docker images') {
             steps {
@@ -15,6 +14,7 @@ pipeline {
                     docker.withRegistry('https://myregistry.azurecr.io', 'acrCredentials') {
                         sh 'docker push myregistry.azurecr.io/myapp-frontend:latest'
                         sh 'docker push myregistry.azurecr.io/myapp-backend:latest'
+                    }
                 }
             }
         }
