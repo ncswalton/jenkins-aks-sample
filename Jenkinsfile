@@ -22,10 +22,12 @@ pipeline {
         }
         stage('Deploy to AKS') {
             steps {
-                withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
-                    sh 'kubectl apply -f ./frontend/kubernetes-deployment.yaml'
-                    sh 'kubectl apply -f ./backend/kubernetes-deployment.yaml'
-                    sh 'kubectl apply -f ./mongo/kubernetes-deployment.yaml'
+                withCredentials([string(credentialsId: 'k8s-url', variable: 'K8S_URL')]) {
+                    withKubeConfig([credentialsId: 'k8s-token', serverUrl: "${K8S_URL}"]) {
+                        sh 'kubectl apply -f ./frontend/kubernetes-deployment.yaml'
+                        sh 'kubectl apply -f ./backend/kubernetes-deployment.yaml'
+                        sh 'kubectl apply -f ./mongo/kubernetes-deployment.yaml'
+                    }
                 }
             }
         }
