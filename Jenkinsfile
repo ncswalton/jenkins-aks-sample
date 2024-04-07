@@ -3,7 +3,6 @@ pipeline {
     stages {
         stage('Build Docker images') {
             steps {
-                sh 'docker build -t myregistry.azurecr.io/myapp-frontend:latest ./frontend'
                 sh 'docker build -t myregistry.azurecr.io/myapp-backend:latest ./backend'
             }
         }
