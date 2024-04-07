@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: myregistry.azurecr.io/myapp-frontend:latest
+        image: nginx:latest
         ports:
         - containerPort: 80
 ---
@@ -42,7 +42,7 @@ data:
         listen 80;
 
         location / {
-            proxy_pass http://localhost:3000;
+            proxy_pass http://backend:3000;
             proxy_http_version 1.1;
             proxy_set_header Upgrade $http_upgrade;
             proxy_set_header Connection 'upgrade';
