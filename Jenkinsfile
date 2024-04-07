@@ -9,9 +9,9 @@ pipeline {
 
         stage('Push Docker images') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'acrCredentials', usernameVariable: 'ACR_USERNAME', passwordVariable: 'ACR_PASSWORD')]) {
+                withCredentials([usernamePassword(credentialsId: 'acr-creds', usernameVariable: 'ACR_USERNAME', passwordVariable: 'ACR_PASSWORD')]) {
                     script {
-                        docker.withRegistry('https://myregistry.azurecr.io', 'acrCredentials') {
+                        docker.withRegistry('https://myregistry.azurecr.io', 'acr-creds') {
                             sh 'docker push myregistry.azurecr.io/myapp-frontend:latest'
                             sh 'docker push myregistry.azurecr.io/myapp-backend:latest'
                         }
