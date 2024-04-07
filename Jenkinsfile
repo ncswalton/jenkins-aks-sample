@@ -7,7 +7,7 @@ pipeline {
                     sh "docker build -t ${ACR_REPO}.azurecr.io/myapp-backend:latest ./backend"
                 }
             }   
-
+        }
         stage('Push Docker images') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'acr-creds', usernameVariable: 'ACR_USERNAME', passwordVariable: 'ACR_PASSWORD'),
