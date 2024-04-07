@@ -22,12 +22,12 @@ pipeline {
         }
         stage('Deploy to AKS') {
             steps {
-                withCredentials([string(credentialsId: 'k8s-url', variable: 'K8S_URL')]) {
-                    withKubeConfig([credentialsId: 'k8s-token', serverUrl: "${K8S_URL}"]) {
-                        sh 'kubectl apply -f ./frontend/kubernetes-deployment.yaml'
-                        sh 'kubectl apply -f ./backend/kubernetes-deployment.yaml'
-                        sh 'kubectl apply -f ./mongo/kubernetes-deployment.yaml'
-                    }
+                withKubeConfig([credentialsId: 'kubeconfig']) {
+                    sh 'curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"'  
+                    sh 'chmod u+x ./kubectl'
+                    sh 'kubectl apply -f ./frontend/kubernetes-deployment.yaml'
+                    sh 'kubectl apply -f ./backend/kubernetes-deployment.yaml'
+                    sh 'kubectl apply -f ./mongo/kubernetes-deployment.yaml'
                 }
             }
         }
