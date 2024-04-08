@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: devaksjenkinsacr/myapp-backend:latest
+        image: devaksjenkinsacr.azurecr.io/myapp-backend:latest
         env:
         - name: REGISTRY_URL
           valueFrom:
