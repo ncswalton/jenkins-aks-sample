@@ -15,12 +15,6 @@ spec:
       containers:
       - name: backend
         image: devaksjenkinsacr.azurecr.io/myapp-backend:latest
-        env:
-        - name: REGISTRY_URL
-          valueFrom:
-            secretKeyRef:
-              name: registry-secret
-              key: registry-url
         ports:
         - containerPort: 8080
 ---
