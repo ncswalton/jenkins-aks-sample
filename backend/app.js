@@ -2,7 +2,7 @@ const express = require('express');
 const mongodb = require('mongodb');
 
 const app = express();
-const client = new mongodb.MongoClient('mongodb://localhost:27017');
+const client = new mongodb.MongoClient('mongodb://mongodb:27017');
 
 app.use(express.json());
 
