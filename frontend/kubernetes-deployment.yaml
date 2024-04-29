@@ -18,11 +18,11 @@ spec:
         ports:
         - containerPort: 80
         volumeMounts:
-        - name: nginx-config
-          mountPath: /etc/nginx/nginx.conf
-          subPath: nginx.conf
+        - name: nginx-config-volume
+          mountPath: /etc/nginx/conf.d/myapp.conf
+          subPath: myapp.conf
       volumes:
-      - name: nginx-config
+      - name: nginx-config-volume
         configMap:
           name: nginx-config
 ---
@@ -45,7 +45,7 @@ kind: ConfigMap
 metadata:
   name: nginx-config
 data:
-  nginx.conf: |
+  myapp.conf: |
     server {
         listen 80;
 
