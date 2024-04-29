@@ -28,7 +28,7 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 80
+      targetPort: 80 # NEED TO UPADTE THIS?????
   type: LoadBalancer
 
 ---
@@ -42,7 +42,7 @@ data:
         listen 80;
 
         location /data {
-            proxy_pass http://backend:80;
+            proxy_pass http://backend:80/data;
             proxy_http_version 1.1;
             proxy_set_header Upgrade $http_upgrade;
             proxy_set_header Connection 'upgrade';
